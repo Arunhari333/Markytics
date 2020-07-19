@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+  {% block body %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">New Master Incident</h4>
+                <br>
+                <h5 class="page-title text-truncate text-dark font-weight-medium mb-1">Initial Reporting</h5>
+            </div>
+        </div>
+    </div>
+    <div class="page-breadcrumb">
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                    {{ field }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+                <p>field:</p>
+                {{ field }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        <div class="form-container">
+          <form method='post'>
+            {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>* Location</label>
+                </div>
+                <div class="col-md-3">{{ form.location }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>* Incident Description</label>
+                </div>
+                <div class="col-md-9">{{ form.description }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>* Date and Time of Incident</label>
+                </div>
+                <div class="col-md-3">{{ form.date }}</div>
+                <div class="col-md-3">{{ form.time }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>Incident Location</label>
+                </div>
+                <div class="col-md-9">{{ form.incidentLoc }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>* Initial Severity</label>
+                </div>
+                <div class="col-md-3">{{ form.severity }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>Suspected Cause</label>
+                </div>
+                <div class="col-md-9">{{ form.cause }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>Immediate Actions Taken</label>
+                </div>
+                <div class="col-md-9">{{ form.actionTaken }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>Sub Incident Types</label>
+                </div>
+                <div class="col-md-9">{{ form.subIncidentTypes }}</div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col-md-2">
+                  <label>* Reported By</label>
+                </div>
+                <div class="col-md-3">{{ form.reportedBy }}</div>
+              </div>
+              <br><br>
+            <div class="row">
+              <div class="md-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              &nbsp;&nbsp;
+              <div class="md-3">
+                <button type="submit" class="btn btn-primary">Save for later</button>
+              </div>
+              &nbsp;&nbsp;
+              <div class="md-3">
+                <a href="/incidentform/" class="btn btn-dark" role="button">Cancel</a>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    <br><br>
+  {% endblock %}

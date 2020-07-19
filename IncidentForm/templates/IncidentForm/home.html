@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success" style="margin-top:25px;">{{ message }}</div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-success" style="margin-top:25px;">Success: You are now logged in</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Hello {{ user }}!</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}
